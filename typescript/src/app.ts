@@ -1,6 +1,6 @@
 import express, { Express } from 'express';
 import { itemsRouter } from './Router/ItemsRouter';
-import bodyParser, { BodyParser } from 'body-parser';
+import bodyParser from 'body-parser';
 
 const PORT = 3000;
 
