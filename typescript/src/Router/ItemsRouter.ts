@@ -1,6 +1,6 @@
 import { Request, Response, Router } from 'express';
 import { Items } from '../Contracts/Items';
-import { addItem, findAll, findById, updatedItems } from '../Services/ItemsService';
+import { addItem, deleteItem, findAll, findById, updatedItem } from '../Services/ItemsService';
 
 export const itemsRouter: Router = Router();
 
@@ -48,7 +48,7 @@ itemsRouter.put('/:id', async(req:Request, res:Response) => {
     let id:number = Number(req.params.id)
 
     try{
-        const result = await updatedItems(id, req.body);
+        const result = await updatedItem(id, req.body);
         console.log(result);
         res.status(200).json(result);
     }catch(error){
@@ -56,3 +56,9 @@ itemsRouter.put('/:id', async(req:Request, res:Response) => {
     }
 })
 
+//DELETE http method
+itemsRouter.delete('/:id', async(req: Request, res: Response) => {
+    let id:number = Number(req.params.id);
+    const result = await deleteItem(id);
+    res.status(200).json(result);
+})

@@ -21,7 +21,7 @@ export const addItem = (newData:Items) => {
 }
 
 //for put method
-export const updatedItems = (id: number, item: Items) => {
+export const updatedItem = (id: number, item: Items) => {
     const dataItemById = dataItems.find((item1) => item1.id === id)
     if(dataItemById){
         dataItemById.id = item.id;
@@ -31,4 +31,12 @@ export const updatedItems = (id: number, item: Items) => {
     }else{
         return Promise.reject();
     }
+}
+
+//for delete method
+export const deleteItem = (id:number) => {  
+    const index = dataItems.findIndex((obj)=>obj.id===id);
+    console.log(index)
+    dataItems.splice(index,1);
+    return Promise.resolve(dataItems);
 }
