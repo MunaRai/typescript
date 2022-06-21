@@ -1,5 +1,6 @@
 import { Request, Response, Router } from 'express';
-import { findAll, findById } from '../Services/ItemsService';
+import { Items } from '../Contracts/Items';
+import { addItem, findAll, findById } from '../Services/ItemsService';
 
 export const itemsRouter: Router = Router();
 
@@ -22,5 +23,20 @@ itemsRouter.get('/:id', async (req: Request, res: Response) => {
         res.json(result);
     }catch(error){
         res.status(404).json('Error');
+    }
+});
+
+//POST http method
+itemsRouter.post('/', async(req:Request, res:Response) => {
+    const newDataItems:Items = {
+        id: Number(req.body.id),
+        title: req.body.title,
+        body: req.body.body
+    }
+    try{
+        const result = await addItem(newDataItems)
+        res.status(200).json(result)
+    }catch(error){
+        res.json('Error')
     }
 });

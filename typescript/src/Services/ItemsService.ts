@@ -1,3 +1,4 @@
+import { Items } from "../Contracts/Items";
 import { dataItems } from "../Data/dataList";
 
 export const findAll = () => {
@@ -10,4 +11,9 @@ export const findById = (id: number) => {
         return Promise.resolve(item);
     }
     return Promise.reject();
+}
+
+export const addItem = (newData:Items) => {
+    dataItems.push(newData);
+    return Promise.resolve(dataItems);
 }
